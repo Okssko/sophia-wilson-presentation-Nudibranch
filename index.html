@@ -104,6 +104,28 @@
         padding: clamp(12px,2vh,20px) clamp(14px,2vw,24px);
       }
 
+      /* ── RESPONSIVE FRAME ── */
+      html, body { min-height: 100%; }
+      body { overflow-x: hidden; }
+      .deck { min-height: 100vh; }
+      .slide { min-height: 100vh; }
+      .panel-center,
+      .split-slide {
+        max-width: min(1440px, calc(100vw - 40px));
+        margin-inline: auto;
+      }
+      .glass,
+      .tall-glass {
+        max-width: 1120px;
+      }
+      .txt-col {
+        max-width: 760px;
+      }
+      .img-frame {
+        max-width: 640px;
+        width: 100%;
+      }
+
       /* ── GLASS PANELS ── */
       .glass {
         background: rgba(20,5,40,.72); backdrop-filter: blur(24px) saturate(1.6);
@@ -244,12 +266,40 @@
       .slide.active .a5 { animation: rise .5s .52s both; }
       .slide.active .a6 { animation: rise .5s .64s both; }
 
+      @media (min-width: 1600px) {
+        .panel-side-r, .panel-side-l { width: min(1080px, 45vw); }
+        .glass { max-width: 960px; padding: clamp(30px, 2.2vw, 80px); }
+        .tall-glass { padding: clamp(24px, 2vw, 60px); }
+        .img-frame { max-width: 840px; }
+        .txt-col { max-width: 820px; }
+        .h-giant { font-size: clamp(3.5rem, 4.5vw, 7.5rem); }
+        .h-large { font-size: clamp(2.1rem, 2.35vw, 3.8rem); }
+        .eyebrow { font-size: clamp(.75rem, .95vw, 1rem); }
+      }
+
+      @media (max-width: 1024px) {
+        .split-slide { flex-direction: column; align-items: stretch; }
+        .img-col { flex: 0 0 auto; width: 100%; padding: clamp(16px,2vh,24px) clamp(14px,3vw,24px); }
+        .img-col.right { order: 2; }
+        .txt-col, .txt-col.left-text { padding: clamp(18px,2vh,28px) clamp(18px,3vw,28px); }
+        .glass, .tall-glass { padding: clamp(20px,2.5vh,36px); }
+        .igrid, .species-grid { grid-template-columns: 1fr; }
+        .panel-side-r, .panel-side-l { position: relative; width: 100%; padding: clamp(18px,2vh,28px); }
+      }
+
+      @media (max-width: 820px) {
+        .h-giant { font-size: clamp(2.4rem, 6.5vw, 4.8rem); }
+        .h-large { font-size: clamp(1.5rem, 4vw, 2.4rem); }
+        .sub, .blist li, .icard .ib p, .scard p { font-size: clamp(.8rem, 2.4vw, 1rem); }
+        .img-frame { aspect-ratio: 4/3; max-height: none; min-height: 260px; }
+      }
+
       @media (max-width: 700px) {
-        .img-col { display: none; }
-        .txt-col, .txt-col.left-text { padding: 20px 18px; order: 1; flex: 1; }
+        .img-col { display: flex; width: 100%; padding: 0 14px 20px; }
+        .txt-col, .txt-col.left-text { padding: 16px 18px 26px; }
         .igrid, .species-grid { grid-template-columns: 1fr; }
         .panel-side-r, .panel-side-l { width: 100%; padding: 14px; }
-        .glass { padding: 28px 20px; }
+        .glass { padding: 24px 18px; }
         .arrow { width: 38px; height: 38px; font-size: .95rem; }
       }
     </style>
@@ -299,7 +349,7 @@
               <h2 class="h-large a2">What Is a <em>Nudibranch?</em></h2>
               <hr class="rule a3" style="background:var(--lime)"/>
               <ul class="blist a4">
-                <li><span class="bull" style="color:var(--lime)">▸</span>Nudibranchs are soft-bodied ocean animals called <strong>molluscs</strong> — relatives of snails and octopuses.</li>
+                <li><span class="bull" style="color:var(--lime)">▸</span>Nudibranchs are soft-bodied ocean animals called molluscs — relatives of snails and octopuses.</li>
                 <li><span class="bull" style="color:var(--lime)">▸</span>The name <strong>nudibranch</strong> means "naked gills" in Latin!</li>
                 <li><span class="bull" style="color:var(--lime)">▸</span>There are over <strong>3,000 known species</strong> found in oceans all around the world.</li>
                 <li><span class="bull" style="color:var(--lime)">▸</span>They range in size from <strong>4 mm to 60 cm</strong> long — huge variety!</li>
@@ -322,7 +372,7 @@
             <h2 class="h-large a2">Why So <em>Colourful?</em></h2>
             <hr class="rule a3" style="background:var(--orange)"/>
             <ul class="blist a4">
-              <li><span class="bull" style="color:var(--orange)">▸</span>Nudibranchs are among the <strong>most colourful animals on Earth</strong> — pinks, oranges, yellows, blues and purples!</li>
+              <li><span class="bull" style="color:var(--orange)">▸</span>Nudibranchs are among the most colourful animals on Earth — pinks, oranges, yellows, blues and purples!</li>
               <li><span class="bull" style="color:var(--orange)">▸</span>Their bright colours are a <strong>warning signal</strong> to predators: "I taste terrible — don't eat me!"</li>
               <li><span class="bull" style="color:var(--orange)">▸</span>This is called <strong>aposematism</strong> — using colour as a danger sign.</li>
               <li><span class="bull" style="color:var(--orange)">▸</span>Some species can even <strong>change colour</strong> slightly depending on what they eat.</li>
@@ -441,11 +491,11 @@
             <h2 class="h-large a2">Where Do They <em>Live?</em></h2>
             <hr class="rule a3" style="background:var(--blue)"/>
             <ul class="blist a4">
-              <li><span class="bull" style="color:var(--blue)">🌍</span>Nudibranchs are found in <strong>every ocean</strong> on Earth — from tropical coral reefs to icy Antarctic waters.</li>
-              <li><span class="bull" style="color:var(--blue)">🪸</span>Most love <strong>shallow coral reefs</strong>, where food is plentiful and water is warm and clear.</li>
-              <li><span class="bull" style="color:var(--blue)">🌊</span>Some species float on the <strong>open ocean surface</strong> — the Blue Dragon even flips upside-down to float!</li>
-              <li><span class="bull" style="color:var(--blue)">🕳️</span>Others hide in <strong>rock pools, seagrass beds</strong> and deep sea floors.</li>
-              <li><span class="bull" style="color:var(--blue)">🇦🇺</span>Australia's Great Barrier Reef is one of the <strong>best places on Earth</strong> to find nudibranchs.</li>
+              <li><span class="bull" style="color:var(--blue)">🌍</span>Nudibranchs are found in every ocean on Earth — from tropical coral reefs to icy Antarctic waters.</li>
+              <li><span class="bull" style="color:var(--blue)">🪸</span>Most love shallow coral reefs, where food is plentiful and water is warm and clear.</li>
+              <li><span class="bull" style="color:var(--blue)">🌊</span>Some species float on the open ocean surface — the Blue Dragon even flips upside-down to float!</li>
+              <li><span class="bull" style="color:var(--blue)">🕳️</span>Others hide in rock pools, seagrass beds and deep sea floors.</li>
+              <li><span class="bull" style="color:var(--blue)">🇦🇺</span>Australia's Great Barrier Reef is one of the best places on Earth</strong> to find nudibranchs.</li>
             </ul>
           </div>
         </div>
@@ -493,10 +543,10 @@
             <h2 class="h-large a2">Nudibranchs &amp; Our <em>Ocean</em></h2>
             <hr class="rule a3" style="background:var(--lime)"/>
             <ul class="blist a4">
-              <li><span class="bull" style="color:var(--lime)">🌊</span>Nudibranchs help <strong>control populations</strong> of sponges, corals and algae — keeping reefs balanced.</li>
-              <li><span class="bull" style="color:var(--lime)">🌊</span>Because they are so <strong>sensitive to pollution</strong>, scientists use them as an indicator of reef health.</li>
-              <li><span class="bull" style="color:var(--lime)">🌊</span>Climate change and <strong>warming oceans</strong> threaten many sea slug habitats and food sources.</li>
-              <li><span class="bull" style="color:var(--lime)">🌊</span>Protecting coral reefs means <strong>protecting nudibranchs</strong> — and thousands of other species too.</li>
+              <li><span class="bull" style="color:var(--lime)">🌊</span>Nudibranchs help control populations of sponges, corals and algae — keeping reefs balanced.</li>
+              <li><span class="bull" style="color:var(--lime)">🌊</span>Because they are so sensitive to pollution, scientists use them as an indicator of reef health.</li>
+              <li><span class="bull" style="color:var(--lime)">🌊</span>Climate change and warming oceans threaten many sea slug habitats and food sources.</li>
+              <li><span class="bull" style="color:var(--lime)">🌊</span>Protecting coral reefs means protecting nudibranchs — and thousands of other species too.</li>
             </ul>
             <span class="badge lime a5">🌿 Reef health indicators</span>
           </div>
